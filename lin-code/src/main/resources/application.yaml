@@ -1,0 +1,47 @@
+server:
+  port: 8123
+
+spring:
+  application:
+    name: lin-code
+  profiles:
+    active: local
+
+# MyBatis-Plus
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.shixi.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# JWT (keep secrets in application-local.yml)
+jwt:
+  expiration: 86400000
+  header: Authorization
+  prefix: Bearer
+
+# Knife4j / Springdoc
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.shixi.controller
+
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+
